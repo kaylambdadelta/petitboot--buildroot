@@ -25,4 +25,11 @@ define HOST_FAKEROOT_BUILD_AUX
 endef
 HOST_FAKEROOT_POST_PATCH_HOOKS += HOST_FAKEROOT_BUILD_AUX
 
+
+define HOST_FAKEROOT_PO4A
+	cd $(@D)/doc; \
+	po4a -k 0 --rm-backups --variable 'srcdir=../doc/' po4a/po4a.cfg
+endef
+HOST_FAKEROOT_POST_BUILD_HOOKS += HOST_FAKEROOT_PO4A
+
 $(eval $(host-autotools-package))
